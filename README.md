@@ -1,127 +1,124 @@
-# USB Monitor - Cross Platform (C++)
+<h1 align="center">USpy</h1>
+<div align="center">
 
-A lightweight C++ console application that monitors USB insertions and removals in real time on both **Windows 11** and **Linux** systems.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Platforms: Linux | Windows](https://img.shields.io/badge/Platforms-Linux%20%7C%20Windows-blue)
+
+</div>
+
+USpy is a lightweight C++ console application for real-time USB device monitoring and automated file copying from inserted drives. Suitable for quick backups and forensic data collection.
 
 ## Features
 
-- Detects USB device insertion/removal events
-- Automatically identifies mount points or drive letters
-- Lists all files and folders on the inserted USB device
-- Supports Linux (via libudev) and Windows (via Windows API)
-- Clean, modular code structure
+- Real-time USB device monitoring (insertion/removal)
+- Automatic file listing of USB contents
+- Auto-copy files to destination folder
+- Cross-platform support (Linux/Windows)
+- Lightweight console application
+- Restart copying with simple command (`rs`)
 
-## Prerequisites
+## Download Pre-built Binaries
 
-### Linux
+Pre-built releases are available for quick setup:
 
-- g++ compiler with C++17 support
-- libudev development library (`libudev-dev`)
+| Platform         | Download Link                                                                                 |
+| ---------------- | --------------------------------------------------------------------------------------------- |
+| Linux (x86_64)   | [USpy-linux-v1.0](https://github.com/yourusername/USpy/releases/download/v1.0/USpy-linux)     |
+| Windows (64-bit) | [USpy-win-v1.0.exe](https://github.com/yourusername/USpy/releases/download/v1.0/USpy-win.exe) |
 
-Install dependencies on Debian/Ubuntu:
+### Linux download example
 
 ```bash
-sudo apt update
-sudo apt install g++ libudev-dev
+wget https://github.com/yourusername/USpy/releases/download/v1.0/USpy-linux
+chmod +x USpy-linux
+./USpy-linux
 ```
 
-### Windows
+## Manual Installation
 
-- MinGW-w64 cross-compiler or native MinGW on Windows
-- Alternatively, Visual Studio for manual compilation
+### Prerequisites
 
-## Build Instructions
+| Platform | Dependencies               |
+| -------- | -------------------------- |
+| Linux    | `g++`, `libudev-dev`       |
+| Windows  | MinGW-w64 or Visual Studio |
 
-### Linux
+**Linux setup:**
 
 ```bash
+sudo apt update && sudo apt install g++ libudev-dev
+```
+
+## Building from Source
+
+```bash
+# Clone repository
+git clone https://github.com/yourusername/USpy.git
+cd USpy
+
+# Build for Linux
 make
-```
 
-Builds the Linux executable at `dist/linux`.
-
-### Windows (Cross-compile on Linux)
-
-```bash
+# Cross-compile for Windows (from Linux)
 make win
-```
 
-Builds the Windows executable at `dist/win.exe`.
-
-### Windows (Native Build)
-
-Use Visual Studio or MinGW on Windows to compile manually.
-
-## Run Instructions
-
-### Linux
-
-```bash
-./dist/linux
-```
-
-### Windows
-
-```bash
-./dist/win.exe
-```
-
-### Enabling Console Logging
-
-By default, the application logs messages to a file named `usb_monitor.log` with minimal console output.
-
-To enable full logging output to the console as well, set the environment variable `USB_MONITOR_LOG_CONSOLE` to `1` before running the application.
-
-You can also set the log file path by setting the environment variable `USB_MONITOR_LOG_FILE` to the desired file path.
-
-For example, on Linux/macOS:
-
-```bash
-export USB_MONITOR_LOG_CONSOLE=1
-export USB_MONITOR_LOG_FILE=/path/to/your_log_file.log
-./dist/linux
-```
-
-On Windows (PowerShell):
-
-```powershell
-$env:USB_MONITOR_LOG_CONSOLE = "1"
-$env:USB_MONITOR_LOG_FILE = "C:\\path\\to\\your_log_file.log"
-.\dist\win.exe
-```
-
-This will show all log messages in the console in addition to writing them to the specified log file.
-
-## Testing
-
-### Run all tests
-
-```bash
+# Run tests
 make test
 ```
 
-### Run utility tests
+## Usage
 
 ```bash
+# 1. Navigate to your target directory
+cd /path/where/you/want/files/copied
+
+# 2. Run USpy (use downloaded binary or built one)
+./USpy-linux      # Linux
+./USpy-win.exe    # Windows
+
+# 3. Insert USB device and monitor activity
+```
+
+**Runtime commands:**
+
+- `rs` - Restarts copying process
+- `Ctrl+C` - Exit the application
+
+## Project Structure
+
+```
+usb-monitor/
+├── Makefile
+├── src/               # Core source files
+├── include/           # Header files
+├── tests/             # Test cases
+└── dist/              # Compiled binaries
+```
+
+## Testing
+
+````bash
+# Run all tests
+make test
+
+# Test file utilities only
 make test-utils
-```
 
-### Run a single test file
-
-```bash
-make test-f file=path/to/test_file.cpp
-```
-
-## Cleaning Build Artifacts
-
-```bash
-make clean
-```
-
-## Notes
-
-- On Linux, ensure your system auto-mounts USB devices (GNOME/KDE usually handle this).
-- On Windows, the app listens to system device events using `WM_DEVICECHANGE`.
+# Test specific file
+```make
+make test-f file=tests/test_file.cpp
+````
 
 ## License
 
-MIT License – free for personal and commercial use.
+MIT License - Free for personal and commercial use. See [LICENSE](LICENSE) for details.
+
+## Author
+
+Sahedul Islam Rony  
+CSE Undergraduate  
+sahedul.dev@gmail.com
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github)](https://github.com/sahedulislamrony)
+
+**Tip:** Run USpy from your target directory to automatically copy files there with date-stamped folders.
