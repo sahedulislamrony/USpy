@@ -1,4 +1,4 @@
-# 🕵️‍♂️ USpy – USB Device Monitor \& Auto-Copier
+# 🕵️‍♂️ USpy – USB Device Monitor
 
 **USpy** is a  lightweight C++ console application designed for real-time USB device monitoring and automated file copying. Ideal for quick backups, forensic data collection, and seamless device management across Linux and Windows.
 
