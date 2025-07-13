@@ -1,91 +1,127 @@
-# 🔌 USB Monitor - Cross Platform (C++)
+# USB Monitor - Cross Platform (C++)
 
-A lightweight C++ console application that monitors USB insertions/removals and lists file contents on both **Windows 11** and **Linux** systems.
+A lightweight C++ console application that monitors USB insertions and removals in real time on both **Windows 11** and **Linux** systems.
 
----
+## Features
 
-## ✨ Features
-
-- Detects USB device insertion/removal in real time
-- Automatically identifies mount point or drive letter
+- Detects USB device insertion/removal events
+- Automatically identifies mount points or drive letters
 - Lists all files and folders on the inserted USB device
-- Supports both **Linux (via libudev)** and **Windows (via Windows API)**
-- Clean, modular structure with separate platform and utility files
+- Supports Linux (via libudev) and Windows (via Windows API)
+- Clean, modular code structure
 
----
+## Prerequisites
 
-## 📁 Project Structure
+### Linux
 
-```
-usb-monitor/
-├── Makefile
-├── README.md
-├── include/
-│   ├── utils/file_utils.h
-│   └── platform/usb_monitor.h
-├── src/
-│   ├── main.cpp
-│   ├── utils/file_utils.cpp
-│   ├── platform/usb_monitor_linux.cpp
-│   └── platform/usb_monitor_windows.cpp
+- g++ compiler with C++17 support
+- libudev development library (`libudev-dev`)
+
+Install dependencies on Debian/Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install g++ libudev-dev
 ```
 
----
+### Windows
 
-## 🛠️ Build Instructions
+- MinGW-w64 cross-compiler or native MinGW on Windows
+- Alternatively, Visual Studio for manual compilation
 
-### ✅ Linux
+## Build Instructions
 
-1. **Install Dependencies**:
-   ```bash
-   sudo apt update
-   sudo apt install g++ libudev-dev
-   ```
+### Linux
 
-2. **Build the App**:
-   ```bash
-   make
-   ```
+```bash
+make
+```
 
-3. **Run**:
-   ```bash
-   ./usb_monitor
-   ```
+Builds the Linux executable at `dist/linux`.
 
----
+### Windows (Cross-compile on Linux)
 
-### ✅ Windows (with MinGW)
+```bash
+make win
+```
 
-1. **Install MinGW** and add it to your PATH  
-   Or use Visual Studio (manual compile).
+Builds the Windows executable at `dist/win.exe`.
 
-2. **Build the App**:
-   ```bash
-   mingw32-make
-   ```
+### Windows (Native Build)
 
-3. **Run**:
-   ```bash
-   usb_monitor.exe
-   ```
+Use Visual Studio or MinGW on Windows to compile manually.
 
----
+## Run Instructions
 
-## 🧠 Notes
+### Linux
 
-- On **Linux**, ensure your system auto-mounts USB devices (GNOME/KDE usually handle this).
-- On **Windows**, the app listens to system device events using `WM_DEVICECHANGE`.
+```bash
+./dist/linux
+```
 
----
+### Windows
 
-## 📌 Dependencies
+```bash
+./dist/win.exe
+```
 
-- C++17+
-- Linux: `libudev-dev`
-- Windows: Windows.h, user32, gdi32
+### Enabling Console Logging
 
----
+By default, the application logs messages to a file named `usb_monitor.log` with minimal console output.
 
-## 📃 License
+To enable full logging output to the console as well, set the environment variable `USB_MONITOR_LOG_CONSOLE` to `1` before running the application.
+
+You can also set the log file path by setting the environment variable `USB_MONITOR_LOG_FILE` to the desired file path.
+
+For example, on Linux/macOS:
+
+```bash
+export USB_MONITOR_LOG_CONSOLE=1
+export USB_MONITOR_LOG_FILE=/path/to/your_log_file.log
+./dist/linux
+```
+
+On Windows (PowerShell):
+
+```powershell
+$env:USB_MONITOR_LOG_CONSOLE = "1"
+$env:USB_MONITOR_LOG_FILE = "C:\\path\\to\\your_log_file.log"
+.\dist\win.exe
+```
+
+This will show all log messages in the console in addition to writing them to the specified log file.
+
+## Testing
+
+### Run all tests
+
+```bash
+make test
+```
+
+### Run utility tests
+
+```bash
+make test-utils
+```
+
+### Run a single test file
+
+```bash
+make test-f file=path/to/test_file.cpp
+```
+
+## Cleaning Build Artifacts
+
+```bash
+make clean
+```
+
+## Notes
+
+- On Linux, ensure your system auto-mounts USB devices (GNOME/KDE usually handle this).
+- On Windows, the app listens to system device events using `WM_DEVICECHANGE`.
+
+## License
 
 MIT License – free for personal and commercial use.
