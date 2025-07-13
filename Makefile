@@ -8,8 +8,7 @@ WIN_SRC = src/main.cpp src/utils/file_utils.cpp src/utils/logger.cpp src/utils/e
 
 LINUX_TARGET = $(DIST_DIR)/linux
 WIN_TARGET = $(DIST_DIR)/win.exe
-
-all: linux
+all: linux win
 
 prepare:
 	@mkdir -p $(DIST_DIR)
@@ -18,7 +17,7 @@ linux: prepare
 	$(CXX) $(CXXFLAGS) $(LINUX_SRC) -o $(LINUX_TARGET) -ludev
 
 win: prepare
-	x86_64-w64-mingw32-g++ -std=c++17 -Wall -Iinclude $(WIN_SRC) -o $(WIN_TARGET) -luser32 -lgdi32
+	x86_64-w64-mingw32-g++ -std=c++17 -Wall -Iinclude -Isrc $(WIN_SRC) -o $(WIN_TARGET) -luser32 -lgdi32
 
 test-utils: prepare
 	$(CXX) $(CXXFLAGS) src/utils/test_file_utils.cpp -o $(DIST_DIR)/test_file_utils
