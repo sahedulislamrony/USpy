@@ -23,8 +23,8 @@ Pre-built releases are available for quick setup:
 
 | Platform         | Download Link                                                                                 |
 | ---------------- | --------------------------------------------------------------------------------------------- |
-| Linux (x86_64)   | [USpy-linux-v1.0](https://github.com/yourusername/USpy/releases/download/v1.0/USpy-linux)     |
-| Windows (64-bit) | [USpy-win-v1.0.exe](https://github.com/yourusername/USpy/releases/download/v1.0/USpy-win.exe) |
+| Linux (x86_64)   | [USpy-linux-v1](https://github.com/yourusername/USpy/releases/download/v1.0.1/USpy-linux)     |
+| Windows (64-bit) | [USpy-win-v1.exe](https://github.com/yourusername/USpy/releases/download/v1.0.1/USpy-win.exe) |
 
 ### Linux download example
 
