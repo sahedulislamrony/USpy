@@ -1,32 +1,28 @@
-<h1 align="center">USpy</h1>
-<div align="center">
+# 🕵️‍♂️ USpy – USB Device Monitor \& Auto-Copier
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Platforms: Linux | Windows](https://img.shields.io/badge/Platforms-Linux%20%7C%20Windows-blue)
+**USpy** is a  lightweight C++ console application designed for real-time USB device monitoring and automated file copying. Ideal for quick backups, forensic data collection, and seamless device management across Linux and Windows.
 
-</div>
+## Key Features
 
-USpy is a lightweight C++ console application for real-time USB device monitoring and automated file copying from inserted drives. Suitable for quick backups and forensic data collection.
+- **Real-time USB Monitoring:** Instantly detects USB insertion and removal events.
+- **Automatic File Listing:** Displays contents of inserted USB drives.
+- **Auto-Copy Function:** Copies files to your chosen destination folder automatically.
+- **Cross-Platform:** Runs on both Linux (x86_64) and Windows (64-bit).
+- **Minimal Footprint:** Lightweight, fast, and easy to use.
+- **Convenient Controls:** Restart copying with `rs` command; exit anytime with `Ctrl+C`.
 
-## Features
 
-- Real-time USB device monitoring (insertion/removal)
-- Automatic file listing of USB contents
-- Auto-copy files to destination folder
-- Cross-platform support (Linux/Windows)
-- Lightweight console application
-- Restart copying with simple command (`rs`)
+## Quick Start: Pre-Built Binaries
 
-## Download Pre-built Binaries
+Effortlessly get started with ready-to-use binaries:
 
-Pre-built releases are available for quick setup:
 
-| Platform         | Download Link                                                                                 |
-| ---------------- | --------------------------------------------------------------------------------------------- |
-| Linux (x86_64)   | [USpy-linux-v1](https://github.com/yourusername/USpy/releases/download/v1.0.1/USpy-linux)     |
+| Platform | Download Link |
+| :-- | :-- |
+| Linux (x86_64) | [USpy-linux-v1](https://github.com/yourusername/USpy/releases/download/v1.0.1/USpy-linux) |
 | Windows (64-bit) | [USpy-win-v1.exe](https://github.com/yourusername/USpy/releases/download/v1.0.1/USpy-win.exe) |
 
-### Linux download example
+**Linux Download Example:**
 
 ```bash
 wget https://github.com/yourusername/USpy/releases/download/v1.0/USpy-linux
@@ -34,25 +30,27 @@ chmod +x USpy-linux
 ./USpy-linux
 ```
 
+
 ## Manual Installation
 
 ### Prerequisites
 
-| Platform | Dependencies               |
-| -------- | -------------------------- |
-| Linux    | `g++`, `libudev-dev`       |
-| Windows  | MinGW-w64 or Visual Studio |
+| Platform | Dependencies |
+| :-- | :-- |
+| Linux | `g++`, `libudev-dev` |
+| Windows | MinGW-w64 or Visual Studio |
 
-**Linux setup:**
+**Install on Linux:**
 
 ```bash
 sudo apt update && sudo apt install g++ libudev-dev
 ```
 
+
 ## Building from Source
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/yourusername/USpy.git
 cd USpy
 
@@ -66,59 +64,60 @@ make win
 make test
 ```
 
-## Usage
+
+## Usage Guide
+
+1. **Navigate to the Target Directory:**
 
 ```bash
-# 1. Navigate to your target directory
 cd /path/where/you/want/files/copied
-
-# 2. Run USpy (use downloaded binary or built one)
-./USpy-linux      # Linux
-./USpy-win.exe    # Windows
-
-# 3. Insert USB device and monitor activity
 ```
 
-**Runtime commands:**
+2. **Run USpy:**
+    - **Linux:** `./USpy-linux`
+    - **Windows:** `./USpy-win.exe`
+3. **Insert a USB Device:** Monitor activity and let USpy handle the rest.
 
-- `rs` - Restarts copying process
-- `Ctrl+C` - Exit the application
+**Runtime Commands:**
+
+- `rs` – Restart the copying process
+- `Ctrl+C` – Exit the application
+
 
 ## Project Structure
 
 ```
 usb-monitor/
 ├── Makefile
-├── src/               # Core source files
-├── include/           # Header files
-├── tests/             # Test cases
-└── dist/              # Compiled binaries
+├── src/        # Core source files
+├── include/    # Header files
+├── tests/      # Test cases
+└── dist/       # Compiled binaries
 ```
+
 
 ## Testing
 
-````bash
+```bash
 # Run all tests
 make test
 
 # Test file utilities only
 make test-utils
 
-# Test specific file
-```make
+# Test a specific file
 make test-f file=tests/test_file.cpp
-````
+```
+
 
 ## License
 
-MIT License - Free for personal and commercial use. See [LICENSE](LICENSE) for details.
+MIT License – Free for personal and commercial use. See [LICENSE](LICENSE) for details.
 
 ## Author
 
-Sahedul Islam Rony  
-CSE Undergraduate  
-sahedul.dev@gmail.com
+**Sahedul Islam Rony** <br/>
+Email: sahedul.dev@gmail.com <br/>
+GitHub: [@sahedulislamrony](https://github.com/sahedulislamrony)
 
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github)](https://github.com/sahedulislamrony)
-
-**Tip:** Run USpy from your target directory to automatically copy files there with date-stamped folders.
+> **Tip:** Launch USpy from your target directory to automatically copy files into date-stamped folders for easy organization.
